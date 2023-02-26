@@ -5,10 +5,15 @@ $url = $_GET['q'];
 
 $feed = new SimplePie();
 $feed->set_feed_url($url);
-@$feed->init();
-if(!empty($feed)){
+
+if(@$feed->init()){
 	$nombreSitio = $feed->get_title();
 	$sql = "INSERT INTO rssfeed (name, url) VALUES ('".$nombreSitio."','". $url."')";
+	if (mysqli_query($connection, $sql)) {
+		//echo "Nuevo registro creado con éxito";
+  } else {
+		//echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
 }
 
 echo "<h1>".$feed->get_title()."</h1>";
@@ -20,7 +25,6 @@ for($i=0;$i<10;$i++){
 	echo "<p>".$item->get_description()."</p>";
 //	echo $item->get_content();
 	echo "<p><i>Fecha y hora: ".$item->get_date()."</i></p>";
-	echo "<p>Autor: ".$item->get_author()->get_name()."</p>";
 	echo "<br>";
 }
 ?>

@@ -1,5 +1,10 @@
+const listadoCRUD_RSS = document.getElementsByClassName("listaRSS");
 let globalVal = '';
+window.onload = verCrudRSS();
 
+const btnEliminar = document.getElementById('btnEliminar');
+
+btnEliminar.addEventListener("click", eliminarURL);
 function peticion(data){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -12,17 +17,26 @@ function peticion(data){
 }
 
 function agregarURL(){
-    let url = document.getElementById('agregarURL');
-    peticion("agregarRSS?q="+url);
+    let url = document.getElementById('agregarURL').value;
+    peticion("agregarRSS.php?q="+url);
+}
+
+function eliminarURL(){
+    let url = document.getElementById('btnEliminar').getAttribute("text");
+    peticion("eliminarRSS.php?q="+url);
 }
 
 function mostrarNoticias(){
-    makeRequest("mostrarRSS.php?q=mostrar");
-    let content = global;
-    if (content) {
-        content = JSON.parse(global);
-        lista_url[0].innerHTML = content.enlace;
-        asignarEventoBoton();
+    
+}
+
+function verCrudRSS(){
+    peticion("verCrudRSS.php");
+    let mensaje = globalVal;
+    if (mensaje) {
+        mensaje = JSON.parse(globalVal);
+        console.log(mensaje.enlace);
+        listadoCRUD_RSS[0].innerHTML = mensaje.enlace;
     } else {
         console.log("Sin noticias");
   }
