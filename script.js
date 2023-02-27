@@ -70,6 +70,19 @@ function mostrarNoticias(){
     ultimaNoticiaVista =  this.textContent;
 }
 
+function buscar(){
+    let cadenaBusqueda = document.getElementById("buscador").value;
+    peticion("busqueda.php?q="+cadenaBusqueda);
+    let content = globalVal;
+    if(content != null){
+        content = JSON.parse(globalVal);
+        siteName.innerHTML = "Resultados";
+        listadoNoticias.innerHTML = content.noticias;
+    }else{
+        alert("No existe ninguna noticia que coincida");
+    }
+}
+
 function verCrudRSS(){
     peticion("verCrudRSS.php");
     let mensaje = globalVal;

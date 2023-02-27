@@ -25,12 +25,6 @@ while ($row = $id->fetch_assoc()) {
 
     if(@$feed->init()){
         $nombreSitio = $feed->get_title();
-        $sql2 = "INSERT INTO rssfeed (name, url) VALUES ('".$nombreSitio."','". $url."')";
-        if (mysqli_query($connection, $sql2)) {
-            //echo "Nuevo registro creado con éxito";
-    } else {
-            //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
     
 
         $sql3 = "SELECT * FROM rssfeed WHERE name = '".$nombreSitio."'";
