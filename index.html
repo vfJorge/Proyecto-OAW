@@ -8,7 +8,6 @@
 
     <body>
         <h1>RSS Feed</h1>
-        <a href="" id="actualizarFeed" onclick="mostrarNoticias()"><img src="imgs/rotate.png" alt=""></a> <br> <br>
         <input type="text" id="agregarURL" placeholder="Agrega una fuente RSS"/>
         <button onclick="agregarURL()">Agregar al feed</button>
         <section id="crudRSS">
@@ -23,6 +22,10 @@
         <button>Buscar</button> &nbsp;&nbsp;
         
         <section id="noticias">
+            <section id="seccionTitulo">
+                <h3 id="titulo"></h3>
+                <input type="image" onclick="actualizarNoticias()" src="imgs/rotate.png" alt="*" width="35"/>
+            </section>
             <section id="listadoNoticias">
 
             </section>

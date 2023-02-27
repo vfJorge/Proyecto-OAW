@@ -1,3 +1,23 @@
+.card {
+    display: flex;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.card h3 {
+    font-size: 1.2em;
+}
+
+.card p {
+    font-size: 1em;
+    color:#c8c7c7;
+}
+
+#listadoNoticias {
+    list-style-type: none;
+}
+
 .enlaces{
     display: flex;
     gap: 2em;

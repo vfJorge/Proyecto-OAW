@@ -1,12 +1,17 @@
 <?php
 require("dbconfig.php");
 
+$siteName = $_GET['q'];
 
-$sql = "SELECT * FROM rssfeed ";
+$sql = "SELECT * FROM rssfeed where name = '".$siteName."'";
 $result = mysqli_query($connection, $sql);
 $row = mysqli_fetch_assoc($result);
+$id_url = $row['id'];
 
+$sql = "SELECT * FROM noticias WHERE id= '".$id_url."'";
+$result = mysqli_query($connection, $sql);  
 $noticias = "";
+
 while ($row = $result->fetch_array()) {
     $noticias .= mostrar($row['date'], $row['title'], $row["url"], $row['descrip'], $row['category']);
   }
