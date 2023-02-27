@@ -20,6 +20,12 @@
         
         <input type="text" id="buscador" placeholder="¿Qué buscas?"/>
         <button onclick="buscar()">Buscar</button> &nbsp;&nbsp;
+        <select name="" id="agruparPor" onchange="ordenar()">
+            <option value="date">Fecha</option>
+            <option value="title">Título</option>
+            <option value="descrip">Descripción</option>
+            <option value="url">URL</option>
+        </select>
         
         <section id="noticias">
             <section id="seccionTitulo">

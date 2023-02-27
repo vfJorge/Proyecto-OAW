@@ -83,6 +83,14 @@ function buscar(){
     }
 }
 
+function ordenar(){
+    let selectOpc = document.getElementById("agruparPor");
+    let tipoOrdenamiento = selectOpc.value;
+    peticion("agruparPor.php?q=" + tipoOrdenamiento + "&p=" + siteName.textContent);
+    let content = JSON.parse(globalVal);
+    listadoNoticias.innerHTML = content.noticias;
+}
+
 function verCrudRSS(){
     peticion("verCrudRSS.php");
     let mensaje = globalVal;
