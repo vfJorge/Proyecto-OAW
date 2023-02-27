@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-#btnEliminar g:hover {
+#btnEliminar:hover {
     cursor: pointer;
     fill: #db0b0b;
 }

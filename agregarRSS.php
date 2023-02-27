@@ -16,15 +16,29 @@ if(@$feed->init()){
   }
 }
 
-echo "<h1>".$feed->get_title()."</h1>";
-echo "<h4>".$feed->get_description()."</h4>";
+$sql = "SELECT * FROM rssfeed WHERE name = '".$nombreSitio."'";
+$resultado = mysqli_query($connection, $sql);
+$row = mysqli_fetch_assoc($resultado);
+$id_url = $row['id'];
 
 for($i=0;$i<10;$i++){
 	$item  = $feed->get_item($i);
-	echo "<a href='".$item->get_link()."'>".$item->get_title()."</a>";
-	echo "<p>".$item->get_description()."</p>";
-//	echo $item->get_content();
-	echo "<p><i>Fecha y hora: ".$item->get_date()."</i></p>";
-	echo "<br>";
+
+	$date = $item->get_date("Y-m-d h:i:s");
+	$title = $item->get_title();
+	$link = $item->get_link();
+	$descrip = $item->get_description();
+	$category = $item->get_category();
+
+	
+	$title = mysqli_real_escape_string( $connection, $title);
+	$link = mysqli_real_escape_string( $connection, $link);
+	$descrip = mysqli_real_escape_string($connection, $descrip);
+	$date = mysqli_real_escape_string($connection, $date);
+	$category = mysqli_real_escape_string($connection, $category);
+
+	$sql = "INSERT INTO noticias (date, title, url, descrip, category, id) VALUES ('".$date."', '".$title."', '".$link."','".$descrip."','".$category."','".$id_url."')";
+    $resultado = mysqli_query($connection, $sql);
 }
+mysqli_close($connection);
 ?>
