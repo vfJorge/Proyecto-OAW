@@ -24,7 +24,7 @@ $id_url = $row['id'];
 for($i=0;$i<10;$i++){
 	$item  = $feed->get_item($i);
 
-	$date = $item->get_date("Y-m-d h:i:s");
+	$date = $item->get_date("Y-m-d h:m:s");
 	$title = $item->get_title();
 	$link = $item->get_link();
 	$descrip = $item->get_description();

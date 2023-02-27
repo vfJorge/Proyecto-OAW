@@ -17,8 +17,24 @@ function peticion(data){
     xhttp.send();
 }
 
+function noticiasIniciales(){
+    if(btnEnlace.length != 0){
+        peticion("mostrarNoticias.php?q=" + btnEnlace[0].textContent);
+        let content = JSON.parse(globalVal);
+        siteName.innerHTML = btnEnlace[0].textContent;
+        listadoNoticias.innerHTML = content.noticias;
+        ultimaNoticiaVista =  btnEnlace[0].textContent;
+      }else{
+        listadoNoticias.innerHTML = "<h1>Nada nuevo...<h1>";
+      }
+}
+
 function actualizarNoticias(){
-    peticion("actualizarRSS.php")
+    peticion("actualizarRSS.php?q="+siteName.textContent);
+    peticion("mostrarNoticias.php?q=" + siteName.textContent);
+    let content = JSON.parse(globalVal);
+    listadoNoticias.innerHTML = content.noticias;
+    ultimaNoticiaVista =  siteName.textContent;
 }
 
 function agregarURL(){
@@ -60,8 +76,9 @@ function verCrudRSS(){
     if (mensaje) {
         mensaje = JSON.parse(globalVal);
         listadoCRUD_RSS[0].innerHTML = mensaje.enlace;
-        agregarEventoMostrar()
+        agregarEventoMostrar();
         agregarEventoEliminar();
+        noticiasIniciales();
     } else {
         console.log("Sin noticias");
   }

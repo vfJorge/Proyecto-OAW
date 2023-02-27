@@ -4,8 +4,6 @@ include "simplepie-1.5/autoloader.php";
 
 $nombreSite = $_GET['q'];
 
-mysqli_close($conn);
-
 $id_url = "";
 
 $url = "";
