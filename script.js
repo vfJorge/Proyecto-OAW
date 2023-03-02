@@ -38,9 +38,10 @@ function actualizarNoticias(){
     ultimaNoticiaVista =  siteName.textContent;
 }
 
-function agregarURL(){
+function addURL(){
     let url = document.getElementById('agregarURL').value;
     peticion("agregarRSS.php?q="+url);
+    location.reload();
 }
 
 function agregarEventoEliminar(){  
@@ -59,12 +60,15 @@ function agregarEventoMostrar() {
 
 function eliminarURL(){
     let nombreEnlace = this.parentNode.childNodes;
-    peticion("eliminarRSS.php?q=" + nombreEnlace[1].textContent);
+    console.log(nombreEnlace);
+    peticion("eliminarRSS.php?q=" + nombreEnlace[3].textContent);
+    location.reload();
 }
 
 
 function mostrarNoticias(){
     peticion("mostrarNoticias.php?q=" + this.textContent);
+    console.log(globalVal);
     let content = JSON.parse(globalVal);
     siteName.innerHTML = this.textContent;
     listadoNoticias.innerHTML = content.noticias;

@@ -28,12 +28,15 @@ function search()
 
 function mostrar($fecha, $titulo, $link, $descripcion, $categoria) { 
   $noticias = <<<_END
-  <div class="card-list" style="--rating:90">
-    <div class="icon">🫠</div>
-    <div class="title">$titulo</div>
-    <p class="description">$descripcion</p>
-    <div class="rating"></div>
-    <a href="$link" class="link">See the recipe</a>
+  <div class="card">
+  <div class="card-header">
+    $fecha
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">$titulo</h3>
+    <div class="card-text">$descripcion</div>
+    <a href="$link" class="btn btn-primary link">Enlace al sitio web</a>
+  </div>
   </div>
 _END;
 
