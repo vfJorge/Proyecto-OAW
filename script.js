@@ -40,6 +40,7 @@ function actualizarNoticias(){
 function agregarURL(){
     let url = document.getElementById('agregarURL').value;
     peticion("agregarRSS.php?q="+url);
+    location.reload();
 }
 
 function agregarEventoEliminar(){  
@@ -59,6 +60,7 @@ function agregarEventoMostrar() {
 function eliminarURL(){
     let nombreEnlace = this.parentNode.childNodes;
     peticion("eliminarRSS.php?q=" + nombreEnlace[1].textContent);
+    location.reload();
 }
 
 

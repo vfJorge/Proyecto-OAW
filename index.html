@@ -8,7 +8,7 @@
 
     <body>
         <h1>RSS Feed</h1>
-        <input type="text" id="agregarURL" placeholder="Agrega una fuente RSS"/>
+        <input type="text" id="agregarURL"onkeydown = "if (event.keyCode == 13) agregarURL()" placeholder="Agrega una fuente RSS"/>
         <button onclick="agregarURL()">Agregar al feed</button>
         <section id="crudRSS">
             <section id="listadoRSS">
@@ -18,7 +18,7 @@
             </section>
         </section>
         
-        <input type="text" id="buscador" placeholder="¿Qué buscas?"/>
+        <input type="text" id="buscador" onkeydown = "if (event.keyCode == 13) buscar()" placeholder="¿Qué buscas?"/>
         <button onclick="buscar()">Buscar</button> &nbsp;&nbsp;
         <select name="" id="agruparPor" onchange="ordenar()">
             <option value="date">Fecha</option>
