@@ -1,21 +1,23 @@
 <?php
 require("dbconfig.php");
 
-
 //  Obtener enlaces desde la base de datos y mostrarlos
 $sql = "SELECT name FROM rssfeed";
 $result = mysqli_query($connection, $sql);
-$enlace = "";
 
-while ($row = $result->fetch_array()) {
-  $enlace .= mostrarEnlaces($row['name']);
+if ($result) { // Agrega una verificación de $result
+    $enlace = "";
+    while ($row = $result->fetch_array()) {
+      $enlace .= mostrarEnlaces($row['name']);
+    }
+
+    $arr = ["enlace" => $enlace];
+} else {
+    $arr = ["error" => "No se pudo obtener los enlaces"];
 }
-
-$arr = ["enlace" => $enlace];
 
 mysqli_close($connection);
 echo json_encode($arr);
-
 
 function mostrarEnlaces($nombre) {
     $enlace = <<<_END
@@ -29,4 +31,4 @@ function mostrarEnlaces($nombre) {
     _END;
     return $enlace;
 }
-?>
+?> 

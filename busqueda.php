@@ -27,27 +27,17 @@ function search()
 }
 
 function mostrar($fecha, $titulo, $link, $descripcion, $categoria) { 
-    $noticias = <<<_END
-    <article class="card">
-    Publicado el
-    <time datetime="2013-11-12T11:00"
-      >$fecha</time>
-    <div class="info">
-      <h3>
-        $titulo
-      </h3>
-      <button id="btnVisitar"><a href=$link>Enlace al sitio web</a></button>
-      <p>
-        $descripcion
-      </p>
-      <p>
-        $categoria
-      </p>
-    </div>
-  </article>
+  $noticias = <<<_END
+  <div class="card-list" style="--rating:90">
+    <div class="icon">🫠</div>
+    <div class="title">$titulo</div>
+    <p class="description">$descripcion</p>
+    <div class="rating"></div>
+    <a href="$link" class="link">See the recipe</a>
+  </div>
 _END;
 
-return $noticias;
+  return $noticias;
 }
 
 search();

@@ -18,15 +18,16 @@ function peticion(data){
 }
 
 function noticiasIniciales(){
+    const btnEnlace = document.getElementsByClassName("btnEnlace");
     if(btnEnlace.length != 0){
         peticion("mostrarNoticias.php?q=" + btnEnlace[0].textContent);
         let content = JSON.parse(globalVal);
         siteName.innerHTML = btnEnlace[0].textContent;
         listadoNoticias.innerHTML = content.noticias;
-        ultimaNoticiaVista =  btnEnlace[0].textContent;
-      }else{
+        ultimaNoticiaVista = btnEnlace[0].textContent;
+    }else{
         listadoNoticias.innerHTML = "<h1>Nada nuevo...<h1>";
-      }
+    }
 }
 
 function actualizarNoticias(){
@@ -78,6 +79,7 @@ function buscar(){
         content = JSON.parse(globalVal);
         siteName.innerHTML = "Resultados";
         listadoNoticias.innerHTML = content.noticias;
+        
     }else{
         alert("No existe ninguna noticia que coincida");
     }

@@ -1,4 +1,6 @@
 <?php
+function show()
+{
 require("dbconfig.php");
 
 $siteName = $_GET['q'];
@@ -13,35 +15,28 @@ $result = mysqli_query($connection, $sql);
 $noticias = "";
 
 while ($row = $result->fetch_array()) {
-    $noticias .= mostrar($row['date'], $row['title'], $row["url"], $row['descrip'], $row['category']);
+    $noticias = mostrar($row['date'], $row['title'], $row["url"], $row['descrip'], $row['category']);
   }
+}
 
 
   function mostrar($fecha, $titulo, $link, $descripcion, $categoria) { 
     $noticias = <<<_END
-    <article class="card">
-    Publicado el
-    <time datetime="2013-11-12T11:00"
-      >$fecha</time>
-    <div class="info">
-      <h3>
-        $titulo
-      </h3>
-      <button id="btnVisitar"><a href=$link>Enlace al sitio web</a></button>
-      <p>
-        $descripcion
-      </p>
-      <p>
-        $categoria
-      </p>
+    <div class="card-list" style="--rating:90">
+      <div class="icon">🫠</div>
+      <div class="title">$titulo</div>
+      <p class="description">$descripcion</p>
+      <div class="rating"></div>
+      <a href="$link" class="link">See the recipe</a>
     </div>
-  </article>
-_END;
-
-return $noticias;
+  _END;
+  
+    return $noticias;
   }
+  
 
 
   $arr = ["noticias" => $noticias];
 echo json_encode($arr);
+show();
 ?>

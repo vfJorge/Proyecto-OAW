@@ -6,5 +6,5 @@ $connection = mysqli_connect(
   'root',
   '',
   'elbuenrssdb'
-) or die(mysqli_error($mysqli));
+) or die(mysqli_error($connection));
 ?>
