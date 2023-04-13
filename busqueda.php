@@ -1,11 +1,12 @@
 <?php
-
+//DEPRECATED
 function search()
 {
   require("dbconfig.php"); 
+  
   $cadenaBusq = $_GET['q'];
 
-  $cadenaDividida= explode(" ",$cadenaBusq);;
+  $cadenaDividida= explode(" ",$cadenaBusq);
   $query = "SELECT * FROM noticias WHERE title LIKE '%$cadenaDividida[0]%' ";
 
   for($i = 1; $i < count($cadenaDividida); $i++) {
@@ -27,27 +28,20 @@ function search()
 }
 
 function mostrar($fecha, $titulo, $link, $descripcion, $categoria) { 
-    $noticias = <<<_END
-    <article class="card">
-    Publicado el
-    <time datetime="2013-11-12T11:00"
-      >$fecha</time>
-    <div class="info">
-      <h3>
-        $titulo
-      </h3>
-      <button id="btnVisitar"><a href=$link>Enlace al sitio web</a></button>
-      <p>
-        $descripcion
-      </p>
-      <p>
-        $categoria
-      </p>
-    </div>
-  </article>
+  $noticias = <<<_END
+  <div class="card">
+  <div class="card-header">
+    $fecha
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">$titulo</h3>
+    <div class="card-text">$descripcion</div>
+    <a href="$link" class="btn btn-primary link">Enlace al sitio web</a>
+  </div>
+  </div>
 _END;
 
-return $noticias;
+  return $noticias;
 }
 
 search();
