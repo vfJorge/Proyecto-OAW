@@ -1,11 +1,12 @@
 <?php
-
+//DEPRECATED
 function search()
 {
   require("dbconfig.php"); 
+  
   $cadenaBusq = $_GET['q'];
 
-  $cadenaDividida= explode(" ",$cadenaBusq);;
+  $cadenaDividida= explode(" ",$cadenaBusq);
   $query = "SELECT * FROM noticias WHERE title LIKE '%$cadenaDividida[0]%' ";
 
   for($i = 1; $i < count($cadenaDividida); $i++) {

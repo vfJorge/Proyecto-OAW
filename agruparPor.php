@@ -1,4 +1,5 @@
 <?php
+//DEPRECATED
 require("dbconfig.php");
 
 $ordenamiento = $_GET['q'];
