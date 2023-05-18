@@ -23,7 +23,7 @@ if (isset($_GET['q'])) {
   $ordenamiento = $_GET['q'];
   switch ($ordenamiento) {
     case 'date':
-        $sql.= " ORDER BY date";
+        $sql.= " ORDER BY date DESC";
         break;
     case 'title':
       $sql.= " ORDER BY title";

@@ -3,7 +3,6 @@ const listadoNoticias = document.getElementById("listadoNoticias");
 const siteName = document.getElementById("actualizar");
 
 let globalVal = '';
-var ultimaNoticiaVista;
 window.onload = verCrudRSS();
 
 function peticion(data){
@@ -31,7 +30,7 @@ function noticiasIniciales(){
 }
 
 function actualizarNoticias(){
-    peticion("actualizarRSS.php?q="+siteName.textContent);
+    peticion("actualizarRSS.php");
     peticion("mostrarNoticias.php");
     let content = JSON.parse(globalVal);
     listadoNoticias.innerHTML = content.noticias;

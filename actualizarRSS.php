@@ -2,24 +2,26 @@
 require("dbconfig.php");
 include "simplepie-1.5/autoloader.php";
 
-$nombreSite = $_GET['q'];
+
 
 $id_url = "";
 
 $url = "";
-$sql = "SELECT id, url FROM rssfeed WHERE name = '".$nombreSite."'";
+$sql = "SELECT * FROM rssfeed";
 $id = mysqli_query($connection, $sql);
+//Por cada Feed en RSSFeed
+while ($row = $id->fetch_array()) {
+    //echo $row['id'];
 
-while ($row = $id->fetch_assoc()) {
-    echo $row['id'];
-
+    //Borra las noticias anteriores
     $sql1 = "DELETE FROM noticias WHERE id ='".$row['id']."'";
     $result = mysqli_query($connection, $sql1);
+
     $url = $row['url'];
     $id_url = $row['id'];
+    $name= $row['name'];
 
-}
-
+    //Conecta al feed
     $feed = new SimplePie();
     $feed->set_feed_url($url);
 
@@ -27,10 +29,6 @@ while ($row = $id->fetch_assoc()) {
         $nombreSitio = $feed->get_title();
     
 
-        $sql3 = "SELECT * FROM rssfeed WHERE name = '".$nombreSitio."'";
-        $resultado = mysqli_query($connection, $sql3);
-        $row1 = mysqli_fetch_assoc($resultado);
-        $id_url = $row1['id'];
 
         for($i=0;$i<10;$i++){
             $item  = $feed->get_item($i);
@@ -51,8 +49,7 @@ while ($row = $id->fetch_assoc()) {
             $sql4 = "INSERT INTO noticias (date, title, url, descrip, category, id) VALUES ('".$date."', '".$title."', '".$link."','".$descrip."','".$category."','".$id_url."')";
             $resultado = mysqli_query($connection, $sql4);
         }
-        mysqli_close($connection);
     }
-
+}
 mysqli_close($connection);
 ?>
